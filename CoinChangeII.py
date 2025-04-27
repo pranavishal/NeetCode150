@@ -11,23 +11,24 @@ class Solution:
         ## M[i][j] = SUM of i = 1 to floor(j/coins[i]) of M[i - 1][j - i*coins[i]]
 
         ## Base case: M[0][j] = 1 if j % coins[i] = 0, 0 otherwise
-        ## Base case [i][0] = 0 for all i
+        ## Base case [i][0] = 1 for all i
 
         j = amount
         i = len(coins)
 
         M = [[0 for _ in range(j + 1)] for _ in range(i)]
 
-        # Base cases (the one where j = 0 is already done during matrix initialising)
+        # Base cases 
         # 
         for x in range(j + 1):
             if x % coins[0] == 0:
                 M[0][x] = 1
         
-        print(M)
+        for x in range(i):
+            M[x][0] = 1
         
         for x in range(1, i):
-            for y in range(0, j + 1):
+            for y in range(1, j + 1):
                 #print(x)
                 #print(coins[x])
                 #print(y)
